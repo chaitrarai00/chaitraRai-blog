@@ -16,7 +16,8 @@ static int count[]=new int [NO_OF_CHARS];
 ```
 
 ```java
-for (int i=0;i<str.length();i++) {                      count[Character.getNumericValue(str.charAt(i))]=count[Character.getNumericValue(str.charAt(i))]+1;
+for (int i=0;i<str.length();i++) {
+  count[Character.getNumericValue(str.charAt(i))]=count[Character.getNumericValue(str.charAt(i))]+1;
  }
 ```
 
@@ -52,12 +53,12 @@ static final int NO_OF_CHARS=256;
 static HashMap<Character, CountIndex> charcount=new HashMap(NO_OF_CHARS);
 
 for(int i=0;i<str.length();i++) {
-             if(charcount.containsKey(str.charAt(i))) {
-                 charcount.get(str.charAt(i)).increment_count();
-             }
-             else {
-                 charcount.put(str.charAt(i), new CountIndex(i));
-             }
+  if(charcount.containsKey(str.charAt(i))) {
+    charcount.get(str.charAt(i)).increment_count();
+  }
+  else {
+    charcount.put(str.charAt(i), new CountIndex(i));
+    }
 }
 ```
 
