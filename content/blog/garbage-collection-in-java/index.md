@@ -1,6 +1,6 @@
 ---
 title: Garbage Collection in Java🗑️
-date: "2021-06-01 T22:12:03.284Z"
+date: "2021-01-06T22:12:03.284Z"
 description: "Automatic Garbage Collection in Java"
 ---
 
