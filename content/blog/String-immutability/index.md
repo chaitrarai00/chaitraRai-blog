@@ -1,7 +1,7 @@
 ---
-title: String Immutability ? 🤔
+title: String Immutability ? 
 date: "2021-04-04T23:46:37.121Z"
-description: "String Immutability ? 🤔"
+description: "String Immutability ?"
 ---
 
 String is said to be immutable. But what does it really mean. 
