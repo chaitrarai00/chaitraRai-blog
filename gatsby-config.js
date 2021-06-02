@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `KeenTechie Blog`,
+    title: `Revision Blog for Core Java`,
     author: {
       name: `Chaithra Rai`,
       summary: `who believes learning is integral part of every creation.`
     },
-    description: `A blog for tech exploration.`,
+    description: `A blog for Going through major concepts while you walk`,
     siteUrl: `https://chaitrarai.netlify.app/`,
     social: {
       linkedin: `Chaithra Rai`
