@@ -1,7 +1,7 @@
 ---
-title: Call by Reference or Value 🤔 in Java!
+title: Call by Reference or Value in Java!
 date: "2020-05-06T23:46:37.121Z"
-description: "Call by Reference or Value 🤔 in Java!"
+description: "Call by Reference or Value in Java!"
 ---
 
 For those with c ,c++ background similar lines of method by reference with address being passed between methods will not happen in java
