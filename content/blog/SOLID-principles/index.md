@@ -159,3 +159,145 @@ public class MotorCar implements Car{
 }
 
 ```
+
+If you consider the Car to be electric which is critical in market nowadays
+
+```java
+
+public class ElectricCar implements Car{
+	//void turnOnEngine() {
+		//Electric cars so not have engines
+	//}
+	void accelerate();{
+		//you accelerate it
+	}
+	//getter and setters
+}
+
+```
+
+This means we cannot replace Electric car child with its Parent Car. which is a clear violation of Liskovs Substitution principle. So, we can overcome this by creating a more generalized Parent that will take into consideration engineless vehicles.
+
+```java
+
+public interface Car{
+	void turnOn(); //either using the engine or battery is upto the child class
+	void accelerate();
+	//getter and setters
+}
+
+```
+
+**_Interface Segregation Principle_**
+**"Do not force any client to implement an interface which is irrelevant to them"** Prefer many client interfaces rather one genralizaed interface doing all functions and all clients have to implement unnecessary methods they would not need.
+
+Consider a Beast Care Taker have to Tame a Bear.
+
+```java
+
+public interface Bear_CareTaker{
+	void washTheBear();
+	void feedTheBear();
+	void petTheBear();
+}
+
+```
+
+Now a normal caretaker would happily wash and feed the Bear but petting the Bear is dangerous. But the interface is forcing them to implement it so lets split this large interface into single responsibility interfaces.
+
+```java
+
+public interface BearWash_CareTaker{
+	void washTheBear();
+}
+
+```
+
+```java
+
+public interface BearFeed_CareTaker{
+	void feedTheBear();
+}
+
+```
+
+```java
+
+public interface BearPet_CareTaker{
+	void petTheBear();
+}
+
+```
+
+Now due to this segrergation one can implement only the methods that would matter to them.
+
+```java
+
+public class CareTaker implements BearFeed_CareTaker,BearFeed_CareTaker{
+		void washTheBear(){
+			//wash it thrice a week
+		}
+		void feedTheBear(){
+			//feed it daily
+		}
+	}
+	//getter and setters
+}
+
+```
+
+And we will let the insane folks to pet the bear
+
+```java
+
+public class CareTaker implements BearPet_CareTaker{
+		void petTheBear(){
+			//Yes, This is definitely Hagrid!!
+		}
+	}
+	//getter and setters
+}
+
+```
+
+**_Dependency Inversion Principle_**
+**"Instead of high level modules depending on low level modules both will depend on Abstractions"**
+
+=>Note: Dependency Injection and Dependency Inversion is 2 different concepts
+
+Say if high level Modules are dependent on low level Modules then it would be tight coupling. changes in low level would mean there are impacts to high level.
+Consider a real life example: a TV remote
+now thats a high level module
+
+```java
+public interface Television_Remote{
+	void Remote(EverydayBattery battery);
+	//having a specific brand to the tv would mean serioud impacts on using other brands or changes to this class
+}
+
+```
+
+but ideally a tv remote should work equally good with any XYZ Battery brand. So just make it dependent in term of abstractions and not classes itself like so,
+
+```java
+public interface Television_Remote{
+	void Remote(Battery battery);
+	//Let the Battery be selected during use at Runtime
+}
+
+
+**_Single Responsibility Principle_**
+**"A class should have only one reason to change"**
+
+**_Open/Closed Principle_**
+**"Software Entities i.e. classes methods etc should be open to extension but closed to modification"**
+
+**_Liskovs Substitution Principle_**
+**"Derived classes or child classes Must be substituable for child or parent classes"**
+
+**_Interface Segregation Principle_**
+**"Do not force any client to implement an interface which is irrelevant to them"**
+
+**_Dependency Inversion Principle_**
+**"Instead of high level modules depending on low level modules both will depend on Abstractions"**
+```
