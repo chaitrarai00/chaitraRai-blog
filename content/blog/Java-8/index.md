@@ -330,7 +330,7 @@ public class Main3 {
 }
 ```
 
-Get a List of Employees sort them based on the Salary (increasing and decreasing both) and then save it in a map
+**Get a List of Employees sort them based on the Salary (increasing and decreasing both) and then save it in a map**
 
 ```java
 List<Employee> employees= getAllEmployees();
@@ -356,7 +356,7 @@ Ginny => 8000000
 Snape => 7000000
 ```
 
-Now convert from a list to map: say you have a list of values characters or integers. You are supposed to create a map with the element as the key and count of elements as the value.
+**Now convert from a list to map: say you have a list of values characters or integers. You are supposed to create a map with the element as the key and count of elements as the value.**
 
 ```java
 	List<String> words=Arrays.asList("Wingardium","Leviosa","Stupefy","Stupefy","Crucio");
@@ -378,6 +378,119 @@ Now convert from a list to map: say you have a list of values characters or inte
 ```java
 {Stupefy=2, Crucio=1, Leviosa=1, Wingardium=1}
 {1=1, 2=1, 3=1, 4=2, 5=2, 6=1, 7=1, 8=1}
+```
+
+**Consider a list of list given you have to make it a combined list: into a stream eliminating the list variation**
+
+```java
+		List<Integer> list1 = Arrays.asList(1,2,3,4,5);
+		List<Integer> list2 = Arrays.asList(6,7,8,9,10);
+		List<Integer> list3 = Arrays.asList(5,8,2,9,1);
+		List<List<Integer>> combinedList = new ArrayList();
+		combinedList.add(list1);
+		combinedList.add(list2);
+		combinedList.add(list3);
+		/*
+		 * combinedList
+		 * [1, 2, 3, 4, 5][6, 7, 8, 9, 10][5, 8, 2, 9, 1]
+		 */
+		 List<Integer> listcombinedList =combinedList.stream().
+						flatMap(list->list.stream()).collect(Collectors.toList());
+			/*
+			 * listcombinedList
+			 * [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 5, 8, 2, 9, 1]
+			 */
+```
+
+**Stream function with operation of number\*3 on each element**
+
+```java
+	List<Integer> prod_three=Arrays.asList(3,6,7,9,12,15);
+	prod_three.stream().map(num->num*3).forEach(number->System.out.print(" "+number));
+	/*
+	 *  9 18 21 27 36 45
+	 */
+```
+
+**list of strings in lowercase has to be converted to all uppercase**
+
+```java
+	List<String> lowercase=Arrays.asList("i","was","running","far","away","would","i","run","off","the","world","someday","nobody","know");
+	List<String> uppercase=lowercase.stream().map(string->string.toUpperCase()).collect(Collectors.toList());
+	/*
+	 * lowercase
+	 * [i, was, running, far, away, would, i, run, off, the, world, someday, nobody, know]
+	 * uppercase
+	 * [I, WAS, RUNNING, FAR, AWAY, WOULD, I, RUN, OFF, THE, WORLD, SOMEDAY, NOBODY, KNOW]
+	 */
+```
+
+**map string length instead of string**
+
+```java
+	List<String> aurora=Arrays.asList("i","was","running","far","away","would","i","run","off","the","world","someday","nobody","know");
+	List<Integer> lengths=aurora.stream().map(length->length.length()).collect(Collectors.toList());
+	System.out.println(aurora);
+	System.out.println(lengths);
+
+	/*
+	 * aurora
+	 * [i, was, running, far, away, would, i, run, off, the, world, someday, nobody, know]
+	 * lengths
+	 * [1, 3, 7, 3, 4, 5, 1, 3, 3, 3, 5, 7, 6, 4]
+	 */
+```
+
+**map string with character at position 2**
+
+```java
+	List<String> full_characters=Arrays.asList("was","running","far","away","would","run","off","the","world","someday","nobody","know");
+	List<Character> charat_two=full_characters.stream().map(ch->ch.charAt(2)).collect(Collectors.toList());
+	/*
+	 * full_characters
+	 * [was, running, far, away, would, run, off, the, world, someday, nobody, know]
+	 * charat_two
+	 * [s, n, r, a, u, n, f, e, r, m, b, o]
+	 */
+```
+
+##Perform Operations where stream reduces to single resultant value.
+
+> It the repeated process of combining all elements
+> T reduce(T identity, BinaryOperator<T> accumulator)
+> identity is the initial value of type T
+> accumulator is the function for combining two values
+> **find the string with maximum length in a list**
+
+```java
+List<String> aurora=Arrays.asList("i","was","running","far","away","would","i","run","off","the","world","someday","nobody","know");
+Optional<String> longestString=aurora.stream().reduce((word1,word2)->word1.length()>word2.length()?word1:word2);
+longestString.ifPresent(str->System.out.println(str));
+//longestString: someday
+```
+
+**get the combined string of all list elements**
+
+```java
+List<String> aurora=Arrays.asList("i","was","running","far","away","would","i","run","off","the","world","someday","nobody","know");
+Optional<String> concated=aurora.stream().reduce((word1,word2)->word1+" "+word2);
+concated.ifPresent(str->System.out.println(str));
+//concated: i was running far away would i run off the world someday nobody know
+```
+
+**find sum of all elements**
+
+```java
+int[] array= {-2,0,4,6,8};
+int sum=Arrays.stream(array).reduce(0, ((num1,num2)->num1+num2));
+//sum: 16
+```
+
+**find product of all numbers in a given range**
+
+```java
+int product=IntStream.range(2, 8).reduce((num1,num2)->num1*num2).orElse(-1);
+//product: 5040
 ```
 
 **_Sequential Streams_**
